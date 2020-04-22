@@ -1,0 +1,19 @@
+.recent-work {
+	margin: 20px 0;
+	position: relative;
+}
+.recent-work .col-md-3 {
+	padding: 0;
+}
+.recent-work .col-md-9 {
+	padding-right: 0;
+}
+
+.recent-work a:hover {
+	text-decoration: none;
+}
+
+.recent-work h2 {
+	margin: 3px 0 10px;
+	padding-right: 50px;
+}
