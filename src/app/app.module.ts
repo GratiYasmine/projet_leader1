@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core'; '@ng-bootstrap/ng-bootstrap'; 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
+import { AdminPropertiesComponent } from './admin/admin-properties/admin-properties.component';
 
 
 
@@ -36,12 +37,14 @@ import { SignInComponent } from './user/sign-in/sign-in.component';
     InspecteurComponent,
     SignUpComponent,
     UserComponent,
-    SignInComponent
+    SignInComponent,
+    AdminPropertiesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

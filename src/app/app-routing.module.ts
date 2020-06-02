@@ -14,6 +14,9 @@ import { SignInComponent } from './user/sign-in/sign-in.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  
+  {path:'admin', component: AdminComponent},
+
   {
       path: 'signup', component:  SignUpComponent,
       children: [{ path: '', component: SignUpComponent }]
@@ -24,7 +27,6 @@ const routes: Routes = [
   },
   { path: '', redirectTo:'/login', pathMatch: 'full'},
 
-  {path:'admin', component: AdminComponent},
   {path:'eleves', component: ElevesComponent},
   {path:'parents', component: ParentsComponent},
   {path:'enseignants', component: EnseignantsComponent},

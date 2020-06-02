@@ -52,6 +52,9 @@
  *
  */
 
+ //import 'bootstrap';
+ import 'firebase';
+
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */

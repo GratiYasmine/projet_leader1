@@ -1,0 +1,103 @@
+<div class="rounded shadow bg-white p-5">
+    <div class="row">
+        <div class="col-12 d-flex">
+            <h2 class="font-weight-light"><i class="fas fa-users"></i>Les utilisateurs</h2>
+            <button class="btn btn-primary ml-auto" type="button" data-toggle="modal" data-target="#propertiesFormModal" (click)="resetForm()"><i class="fas fa-plus"></i>Ajouter un utilisateur</button>
+        </div>
+    </div>
+    <hr class="mt-1 mb-5 bg-dark">
+    <div class="row">
+      <div *ngFor="let property of properties; let i = index" class="col-12 shadow-sm p-4 mb-3 bg-light">
+        <div class="d-flex">
+          <h3 class="font-weight-normal">{{property.fullName}}</h3>
+          <div class="ml-auto">
+            <button class="btn btn-primary m-1" type="button"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger m-1" type="button" (click)="onDeleteProperty(i)"><i class="fas fa-trash-alt"></i></button>
+          </div>
+        </div>
+        <p>
+          {{ property.role }} <span *ngIf="property.dateOfBirth && property.dateOfBirth !== '' ">né(e) le : {{ property.dateOfBirth }}</span> <span *ngIf="property.placeOfBirth && property.placeOfBirth !== '' "> à {{ property.placeOfBirth }} ,</span> <span *ngIf="property.email && property.email !== '' "> Email: {{property.email}} ,</span> <span *ngIf="property.phoneNumber && property.phoneNumber !== '' ">Telephone: {{property.phoneNumber}} ,</span> <span *ngIf="property.email && property.email !== '' ">Email: {{property.email}}</span>
+        </p> 
+        <p *ngIf="property.identityCard && property.identityCard !== ''">
+          CIN: {{property.identityCard}}
+        </p> 
+      </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="propertiesFormModal" tabindex="-1" role="dialog" data-keyboard="false"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <form [formGroup]="propertiesForm" (ngSubmit)="onSubmitPropertiesForm()">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Editer un utilisateur</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <div class="form-group">
+                      <input type="text" placeholder="Nom & Prenom" class="form-control" formControlName="fullName">
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Role</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01" formControlName="role">
+                      <option value="Administrateur">Administrateur</option>
+                      <option value="Enseignant">Enseignant</option>
+                      <option value="Eleve">Eleve</option>
+                      <option value="Parent">Parent</option>
+                      <option value="Inspecteur">Inspecteur</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                      <div class="form-row">
+                          <div class="form-group col-6">
+                              <input type="date" placeholder="Date de Naissance" class="form-control" formControlName="dateOfBirth">
+                          </div>
+                          <div class="form-group col-6">
+                            <input type="text" placeholder="Lieu de Naissance" class="form-control" formControlName="placeOfBirth">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <textarea class="form-control w-100" rows="4" placeholder="Remarque" formControlName="note"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <input type="number" placeholder="Telephone" class="form-control" formControlName="phoneNumber">
+                      </div>
+                      <div class="form-group">
+                        <input type="number" placeholder="CIN" class="form-control" formControlName="identityCard">
+                      </div>
+                      <div class="form-group">
+                        <input type="email" placeholder="Email" class="form-control" formControlName="email">
+                      </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" type="submit" [disabled]="propertiesForm.invalid">Enregistrer</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<!-- Delete property Modal-->
+  <div class="modal fade" id="deletePropertyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Supprimer cet utilisateur</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler
+          </button>
+          <button type="button" class="btn btn-danger" (click)="onConfirmDeleteProperty()">Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </div>
